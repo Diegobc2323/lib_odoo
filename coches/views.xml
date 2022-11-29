@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+      <record id="Coches_action" model="ir.actions.act_window">
+        <field name="name">Coches</field>
+        <field name="res_model">coches.coches</field>
+        <field name="view_mode">tree,form,search</field>
+      </record>
+      
+    <!-- add coches tree view -->
+    <record id="coches_tree_view" model="ir.ui.view">
+        <field name="name">coches.tree</field>
+        <field name="model">coches.coches</field>
+        <field name="arch" type="xml">
+            <tree string="Coches">
+                <field name="matricula"/>
+                <field name="marca"/>
+                <field name="modelo"/>
+                <field name="color"/>
+                <field name="precio"/>
+            </tree>
+        </field>
+    </record>
+
+      <record id="Coches_form" model="ir.ui.view">
+        <field name="name">coches.coches.form</field>
+        <field name="model">coches.coches</field>
+        <field name="arch" type="xml">
+          <form string="Coches">
+            <group>
+              <field name="matricula"/>
+              <field name="marca"/>
+              <field name="modelo"/>
+              <field name="color"/>
+              <field name="precio"/>
+              <field name="fecha_matriculacion"/>
+              <field name="antiguedad"/>
+              <field name="fecha_venta"/>
+              <field name="comprador"/>
+              <field name="vendedor"/>
+              <field name="estado"/>
+            </group>
+          </form>
+        </field>
+      </record>
+
+    <record id="comprador_action" model="ir.actions.act_window">
+        <field name="name">Comprador</field>
+        <field name="res_model">coches.comprador</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+      
+
+      <record id="Comprador_form" model="ir.ui.view">
+        <field name="name">coches.comprador.form</field>
+        <field name="model">coches.comprador</field>
+        <field name="arch" type="xml">
+          <form string="Comprador">
+            <group>
+              <field name="nombre"/>
+              <field name="apellidos"/>
+              <field name="dni"/>
+              <field name="telefono"/>
+              <field name="email"/>
+              
+            </group>
+          </form>
+        </field>
+      </record>
+
+    <record id="vendedor_action" model="ir.actions.act_window">
+        <field name="name">Vendedor</field>
+        <field name="res_model">coches.vendedor</field>
+        <field name="view_mode">tree,form</field>
+      </record>
+      
+
+      <record id="Vendedor_form" model="ir.ui.view">
+        <field name="name">coches.vendedor.form</field>
+        <field name="model">coches.vendedor</field>
+        <field name="arch" type="xml">
+          <form string="Vendedor">
+            <group>
+              <field name="nombre"/>
+              <field name="apellidos"/>
+              <field name="dni"/>
+              <field name="telefono"/>
+              <field name="email"/>
+              
+            </group>
+          </form>
+        </field>
+      </record>
+    <!--add coches search view-->
+    <record id="coches_search" model="ir.ui.view">
+        <field name="name">coches.search</field>
+        <field name="model">coches.coches</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Coches">
+                <field name="matricula"/>
+                <field name="marca"/>
+                <field name="modelo"/>
+                <field name="color"/>
+                <field name="precio"/>
+                <field name="fecha_matriculacion"/>
+                <field name="antiguedad"/>
+                <field name="fecha_venta"/>
+                <field name="comprador"/>
+                <field name="vendedor"/>
+                <field name="estado"/>
+            </search>
+            <!--add filter marca = opel-->
+            <filter string="Opel" name="opel" domain="[('marca','=','Opel')]"/>
+        </field>
+    </record>
+
+
+<menuitem
+    id="coches_root_menu"
+    name="coches"
+    sequence="10"/>
+<menuitem
+    id="coches_menu"
+    name="coches"
+    action="Coches_action"
+    parent="coches_root_menu"/>
+<menuitem
+    id="comprador_menu"
+    name="comprador"
+    action="comprador_action"
+    parent="coches_root_menu"/>
+<menuitem
+    id="vendedor_menu"
+    name="vendedor"
+    action="vendedor_action"
+    parent="coches_root_menu"/>
+
+</odoo>
