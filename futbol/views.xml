@@ -1,0 +1,96 @@
+<odoo>
+
+
+    <!-- jugador act_window -->
+    <record model="ir.actions.act_window" id="futbol.jugador_action_window" >
+        <field name="name">Jugadores</field>
+        <field name="res_model">futbol.jugador</field>
+        <field name="view_mode">tree,form,search</field>
+    </record>
+    
+
+    <!-- jugador tree view -->
+    <record model="ir.ui.view" id="futbol.jugador_list_view" >
+        <field name="name">futbol.jugador.view.tree</field>
+        <field name="model">futbol.jugador</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="apellido"/>
+                <field name="edad"/>
+                <field name="posicion"/>
+                <field name="dorsal"/>
+                <field name="equipo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!--add jugadores search view-->
+    <record id="jugadores_search" model="ir.ui.view">
+        <field name="name">jugadores.search</field>
+        <field name="model">futbol.jugador</field>
+        <field name="type">search</field>
+        <field name="arch" type="xml">
+            <search string="Search Jugadores">
+                <field name="name"/>
+                <field name="apellido"/>
+                <field name="edad"/>
+                <field name="posicion"/>
+                <field name="dorsal"/>
+                <field name="equipo"/>
+            </search>
+            <!--filter posicion-->
+            <filter string="Delantero" name="posicion" domain="[('posicion','=','delantero')]"/>
+        </field>
+    </record>
+
+<!-- create entrenador act_window -->
+    <record model="ir.actions.act_window" id="futbol.entrenador_action_window" >
+        <field name="name">Entrenadores</field>
+        <field name="res_model">futbol.entrenador</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- entrenador tree view -->
+    <record model="ir.ui.view" id="futbol.entrenador_list_view" >
+        <field name="name">futbol.entrenador.view.tree</field>
+        <field name="model">futbol.entrenador</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="apellido"/>
+                <field name="edad"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_fin"/>
+                <field name="equipo"/>
+            </tree>
+        </field>
+    </record>
+
+<!-- create equipo act_window -->
+    <record model="ir.actions.act_window" id="futbol.equipo_action_window" >
+        <field name="name">Equipos</field>
+        <field name="res_model">futbol.equipo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- equipo tree view -->
+    <record model="ir.ui.view" id="futbol.equipo_list_view" >
+        <field name="name">futbol.equipo.view.tree</field>
+        <field name="model">futbol.equipo</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="ciudad"/>
+                <field name="estadio"/>
+                <field name="jugadores"/>
+                <field name="entrenadores"/>
+            </tree>
+        </field>
+    </record>
+
+    <menuitem id="futbol_menu" name="Futbol" sequence="10"/>
+    <menuitem id="futbol_jugador_menu" name="Jugadores" parent="futbol_menu" action="futbol.jugador_action_window" sequence="1"/>
+    <menuitem id="futbol_entrenador_menu" name="Entrenadores" parent="futbol_menu" action="futbol.entrenador_action_window" sequence="2"/>
+    <menuitem id="futbol_equipo_menu" name="Equipos" parent="futbol_menu" action="futbol.equipo_action_window" sequence="3"/>
+</odoo>
